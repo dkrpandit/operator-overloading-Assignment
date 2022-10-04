@@ -1,5 +1,3 @@
-// 23+obj not working
-
 #include <iostream>
 using namespace std;
 class demo
@@ -18,15 +16,21 @@ public:
         num = 0;
     }
 
-    demo operator+(demo obj)
+    friend demo operator+(demo obj, int n)
     {
-        demo res;
-        res.num = num + obj.num;
-        return res;
+        demo temp;
+        temp.num = obj.num + n;
+        return temp;
+    }
+    friend demo operator+(int n, demo obj)
+    {
+        demo temp;
+        temp.num = obj.num + n;
+        return temp;
     }
     void display()
     {
-        cout << "sum is   " << num;
+        cout << "sum is   " << num << "\n";
     }
 };
 
@@ -42,9 +46,24 @@ int main()
 
     demo obj2;
     obj2 = obj1 + n;
-    cout << "obj1+num \n";
+    cout << "(obj1+number )   -";
     obj2.display();
-    cout << "number + obj1 \n";
+    cout << "(number + obj1 )  -";
+    obj2 = n + obj1;
+    obj2.display();
 
     return 0;
 }
+
+/*
+
+output-
+
+Enter number (main function)
+23
+Enter number (demo class)
+34
+(obj1+number )   -sum is   57
+(number + obj1 )  -sum is   57
+
+*/
