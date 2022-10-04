@@ -1,3 +1,5 @@
+// 23+obj not working
+
 #include <iostream>
 using namespace std;
 class demo
